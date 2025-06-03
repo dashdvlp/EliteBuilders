@@ -25,6 +25,7 @@ jobs:
         run: |
           cd frontend
           npm ci
+          npm install -D tailwindcss postcss autoprefixer
 
       - name: Build
         run: |
