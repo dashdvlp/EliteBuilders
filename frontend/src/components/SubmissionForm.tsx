@@ -28,7 +28,6 @@ const SubmissionForm: React.FC<SubmissionFormProps> = ({ challengeId }) => {
     demoVideoUrl: '',
   });
   const [submitting, setSubmitting] = useState(false);
-  const [currentStatus, setCurrentStatus] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [submissionStatus, setSubmissionStatus] = useState<string>('');
 
@@ -38,22 +37,6 @@ const SubmissionForm: React.FC<SubmissionFormProps> = ({ challengeId }) => {
       ...prev,
       [name]: value,
     }));
-  };
-
-  const mockSubmissionProcess = async () => {
-    const statuses = [
-      { message: 'Submitting...', delay: 1500 },
-      { message: 'Automated tests running...', delay: 3000 },
-      { message: 'LLM evaluation in progress...', delay: 2500 },
-      { message: 'Submission successful! Provisional score: 85/100', delay: 0 },
-    ];
-
-    for (const status of statuses) {
-      setCurrentStatus(status.message);
-      if (status.delay > 0) {
-        await new Promise((resolve) => setTimeout(resolve, status.delay));
-      }
-    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -142,12 +125,6 @@ const SubmissionForm: React.FC<SubmissionFormProps> = ({ challengeId }) => {
         {error && (
           <Alert severity="error" sx={{ mt: 2 }}>
             {error}
-          </Alert>
-        )}
-
-        {currentStatus && (
-          <Alert severity="info" sx={{ mt: 2 }}>
-            {currentStatus}
           </Alert>
         )}
 

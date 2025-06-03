@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, List, ListItem, ListItemText, Paper, Button } from '@mui/material';
+import { Typography, List, ListItem, ListItemText, Paper, Button } from '@mui/material';
 
 interface Notification {
   id: number;
