@@ -71,6 +71,10 @@ cd backend
 
 2. Follow backend setup instructions in backend/README.md
 
+## Deployment
+
+The application is automatically deployed to GitHub Pages at https://dashdvlp.github.io/EliteBuilders/
+
 ## Contributing
 Please read our contributing guidelines before submitting pull requests.
 
