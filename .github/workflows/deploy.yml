@@ -27,7 +27,7 @@ jobs:
           echo "Installing dependencies..."
           npm ci
           echo "Installing dev dependencies..."
-          npm install -D tailwindcss@3.3.0 postcss@8.4.31 autoprefixer@10.4.16 postcss-import@15.1.0 postcss-nesting@12.0.1
+          npm install -D tailwindcss@3.3.0 postcss@8.4.31 autoprefixer@10.4.16 postcss-import@15.1.0 postcss-nesting@12.0.1 terser@5.24.0
           echo "Listing installed dependencies..."
           npm list --depth=0
 
