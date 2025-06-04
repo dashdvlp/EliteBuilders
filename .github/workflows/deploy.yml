@@ -24,8 +24,12 @@ jobs:
       - name: Install Dependencies
         run: |
           cd frontend
+          echo "Installing dependencies..."
           npm ci
+          echo "Installing dev dependencies..."
           npm install -D tailwindcss@3.3.0 postcss@8.4.31 autoprefixer@10.4.16 postcss-import@15.1.0 postcss-nesting@12.0.1
+          echo "Listing installed dependencies..."
+          npm list --depth=0
 
       - name: Debug - List Files
         run: |
@@ -40,13 +44,15 @@ jobs:
         run: |
           cd frontend
           echo "Building with Vite..."
-          npm run build
+          npm run build --verbose
           echo "Copying 404.html to dist..."
           cp 404.html dist/
           echo "Contents of dist directory:"
           ls -la dist/
           echo "Contents of dist/assets directory:"
           ls -la dist/assets/
+          echo "Checking for main entry point..."
+          find dist -type f -name "*.js" | sort
 
       - name: Debug - Check Built Files
         run: |
@@ -54,7 +60,11 @@ jobs:
           echo "Checking index.html content:"
           cat index.html
           echo "Checking for main entry point:"
-          find . -name "*.js" | grep -i main
+          find . -type f -name "*.js" | sort
+          echo "Checking for CSS files:"
+          find . -type f -name "*.css" | sort
+          echo "Checking for other assets:"
+          find . -type f -not -name "*.html" | sort
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

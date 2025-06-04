@@ -20,10 +20,15 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: true,
+    minify: 'terser',
     rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+      },
       output: {
         manualChunks: {
           'mui-icons': ['@mui/icons-material'],
+          'vendor': ['react', 'react-dom'],
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'index.html') {
